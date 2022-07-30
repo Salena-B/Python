@@ -1,0 +1,72 @@
+import time
+import random
+import player
+import hangman
+import tkinter
+import tkinter.messagebox
+import winsound
+#Salena Bower
+#salena.bower001@albright.edu
+#FINAL PROJECT 50 WORD FUNCTION LIST
+def main():
+    file = openFile()
+    hangmanList = getList(file)
+    words = wordsInList(hangmanList)
+    word = wordSelect(hangmanList,words)
+    hangman.Hangman(word,7)
+    playAgain()
+    
+#opens file
+def openFile():
+    try:
+        file = open('hangman.txt','r')
+    except IOError:
+        print('Error: File not found.')
+        filename = input('Enter a file to open: ')
+        file = open(filename,'r')
+    except FileNotFoundError:
+        print('Error: File not found.')
+    except:
+        print('Error: Unknown error has occurred.')
+    return file;
+
+#converts contents of file to a list    
+def getList(file):
+    hangman = []
+    line = file.readline()
+    while line != '':
+        line = line.rstrip('\n')
+        hangman.append(line)
+        line = file.readline()
+    file.close()
+    return hangman;
+
+#determines total number of words in list
+def wordsInList(hangman):
+    count = 0
+    for x in range(len(hangman)):
+        count += 1
+    return count;
+
+#selects random word from list
+def wordSelect(hangman,words):
+    wordLetterList = []
+    word = hangman[random.randint(0,words)]
+    for x in range(len(word)):
+        letter = word[x]
+        wordLetterList.append(letter)
+    return wordLetterList;
+#asks if user wants to play again
+def playAgain():
+    print('Would you like to play Hangman? (y or n)')
+    answer = str(input(''))
+    while answer not in 'yYnN':
+        answer = str(input(''))
+    if answer in 'yY':
+        main()
+    else:
+        print('Exiting program.')
+    return
+
+main()
+time.sleep(3)
