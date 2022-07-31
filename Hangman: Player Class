@@ -1,0 +1,49 @@
+#Salena Bower
+#salena.bower001@albright.edu
+# Hangman Player class
+#player class
+#creates player class
+class Player:
+    def __init__(self,name,age,win,loss,total_games):
+        self.__name = name
+        self.__win = win
+        self.__loss = loss
+        self.__total_games = total_games
+        self.__age = age
+
+    def set_name(self):
+        self.__name = name
+
+    def set_win(self):
+        self.__win += str(1)
+
+    def set_loss(self):
+        self.__loss += str(1)
+
+    def set_age(self,age):
+        self.__age = age
+        
+    def set_total_games(self):
+        self.__total_games += str(1)
+        
+    def get_name(self):
+        return self.__name;
+
+    def get_win(self):
+        return self.__win;
+
+    def get_loss(self):
+        return self.__loss;
+
+    def get_age(self):
+        return self.__age;
+
+    def get_total_games(self):
+        return self.__total_games;
+
+    def __str__(self):
+        return 'Name: ' + self.__name + \
+               '\nAge: ' + self.__age + \
+               '\nWins: ' + self.__win + \
+               '\nLosses: ' + self.__loss + \
+               '\nTotal Games: ' + self.__total_games;
